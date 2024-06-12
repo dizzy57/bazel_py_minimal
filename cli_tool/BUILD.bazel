@@ -1,6 +1,13 @@
 load("@aspect_rules_py//py:defs.bzl", "py_binary")
+load("@rules_python//python:defs.bzl", py_binary_rules_python = "py_binary")
 
 py_binary(
     name = "cli_tool",
     srcs = ["cli_tool.py"],
+)
+
+py_binary_rules_python(
+    name = "rules_python",
+    srcs = ["cli_tool.py"],
+    main = "cli_tool.py",
 )
