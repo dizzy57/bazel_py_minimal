@@ -1,0 +1,37 @@
+load("@aspect_rules_py//py:defs.bzl", "py_test")
+load("@pip//:requirements.bzl", "requirement")
+load("@rules_python//python:defs.bzl", py_test_rules_python = "py_test")
+
+py_test(
+    name = "runfiles_test",
+    srcs = ["test_runfiles.py"],
+    data = ["test_data.txt"],
+    main = "test_runfiles.py",
+    deps = [requirement("bazel-runfiles")],
+)
+
+py_test_rules_python(
+    name = "runfiles_rp_test",
+    srcs = ["test_runfiles.py"],
+    data = ["test_data.txt"],
+    main = "test_runfiles.py",
+    deps = [requirement("bazel-runfiles")],
+)
+
+py_test(
+    name = "runfiles_rfrp_test",
+    srcs = ["test_runfiles.py"],
+    data = ["test_data.txt"],
+    env = {"RUNFILES_FROM_RULES_PYTHON": "1"},
+    main = "test_runfiles.py",
+    deps = ["@rules_python//python/runfiles"],
+)
+
+py_test_rules_python(
+    name = "runfiles_rp_rfrp_test",
+    srcs = ["test_runfiles.py"],
+    data = ["test_data.txt"],
+    env = {"RUNFILES_FROM_RULES_PYTHON": "1"},
+    main = "test_runfiles.py",
+    deps = ["@rules_python//python/runfiles"],
+)
