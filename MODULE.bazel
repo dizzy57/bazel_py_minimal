@@ -5,6 +5,16 @@ python.toolchain(
     is_default = True,
     python_version = "3.9",
 )
+use_repo(python, "python_versions")
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+pip.parse(
+    hub_name = "pip",
+    python_version = "3.9",
+    requirements_lock = "requirements_3_9.txt",
+)
+use_repo(pip, "pip")
+
 
 bazel_dep(name = "aspect_rules_py", version = "0.7.4")
 
