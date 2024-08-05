@@ -1,4 +1,4 @@
-bazel_dep(name = "rules_python", version = "0.32.2")
+bazel_dep(name = "rules_python", version = "0.34.0")
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(
@@ -6,21 +6,24 @@ python.toolchain(
     python_version = "3.9",
 )
 
-bazel_dep(name = "aspect_rules_py", version = "0.7.3")
-archive_override(
-    module_name = "aspect_rules_py",
-    integrity = "sha256-JGG43C2N3TReJmcEeWvnJo/kZV2Z3oDj6JKgLOW2HFA=",
-    strip_prefix = "rules_py-85f663dfb04861bfae6a509fbd8c679ebdd55937",
-    urls = ["https://github.com/aspect-build/rules_py/archive/85f663dfb04861bfae6a509fbd8c679ebdd55937.zip"],
-)
+bazel_dep(name = "aspect_rules_py", version = "0.7.4")
 
-bazel_dep(name = "rules_rust", version = "0.38.0")
-
-rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
-rust.toolchain(
-    edition = "2021",
-    versions = ["1.74.1"],
-)
-use_repo(rust, "rust_toolchains")
-
-register_toolchains("@rust_toolchains//:all")
+# # The following is for testing pre-release versions of rules_py.
+#
+# archive_override(
+#     module_name = "aspect_rules_py",
+#     integrity = "sha256-JGG43C2N3TReJmcEeWvnJo/kZV2Z3oDj6JKgLOW2HFA=",
+#     strip_prefix = "rules_py-85f663dfb04861bfae6a509fbd8c679ebdd55937",
+#     urls = ["https://github.com/aspect-build/rules_py/archive/85f663dfb04861bfae6a509fbd8c679ebdd55937.zip"],
+# )
+# 
+# bazel_dep(name = "rules_rust", version = "0.38.0")
+# 
+# rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
+# rust.toolchain(
+#     edition = "2021",
+#     versions = ["1.74.1"],
+# )
+# use_repo(rust, "rust_toolchains")
+# 
+# register_toolchains("@rust_toolchains//:all")
