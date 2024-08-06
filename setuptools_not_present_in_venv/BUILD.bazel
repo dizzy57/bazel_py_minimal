@@ -1,0 +1,17 @@
+load("@aspect_rules_py//py:defs.bzl", "py_test")
+load("@pip//:requirements.bzl", "requirement")
+load("@rules_python//python:defs.bzl", py_test_rules_python = "py_test")
+
+py_test(
+    name = "ray_test",
+    srcs = ["test_ray.py"],
+    main = "test_ray.py",
+    deps = [requirement("ray")],
+)
+
+py_test_rules_python(
+    name = "ray_rp_test",
+    srcs = ["test_ray.py"],
+    main = "test_ray.py",
+    deps = [requirement("ray")],
+)
