@@ -1,1 +1,2 @@
 bazel-runfiles
+ray[data]==2.9.2
